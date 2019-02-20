@@ -40,6 +40,11 @@ GameEngine.prototype.startInput = function() {
         console.log("Left Click Event - X, Y " + e.clientX +"," + e.clientY);
     }, false);
 
+    this.ctx.canvas.addEventListener("keydown", function (e) {
+        that.key = e.keyCode;
+        //console.log("Key Down Event - Char " + e.code + " Code " + e.keyCode);
+        }, false);
+
 }
 
 GameEngine.prototype.start = function () {
