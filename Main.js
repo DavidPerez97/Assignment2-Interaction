@@ -2,7 +2,6 @@ var AM = new AssetManager();
 
 
 
-AM.queueDownload("./img/slime_sprite.png");
 AM.queueDownload("./img/background2.jpg");
 
 AM.downloadAll(function () {
@@ -13,14 +12,17 @@ AM.downloadAll(function () {
     gameEngine.init(ctx);
     gameEngine.start();
 
-
-    
-
     gameEngine.addEntity(new Background(gameEngine, AM.getAsset("./img/background2.jpg")));
 
+    //var playerPongBoard = new; //agent stuffAutomata(gameEngine);
+    //var agentPongBoard = new;//
+    //var bouncingBall = new;
+    //gameEngine.addEntity(automata);
+    //gameEngine.board = automata;
 
-
-
+    //gameEngine.addEntity(playerPongBoard);
+    //gameEngine.addEntity(agentPongBoard);
+    //gameEngine.addEntity(bouncingBall);
 
     
     console.log("All Done!");
