@@ -13,7 +13,7 @@ AM.queueDownload("./img/pingBallOnEnemySide.png");
 
 
 window.onload = function () {
-    var socket = io.connect("http://localhost:8888");  
+    var socket = io.connect("http://localhost:8888");   s 
     socket.on("load", function (data) {
         console.log(data);
     });
