@@ -17,7 +17,7 @@ function PlayerPingBlock(game, spritesheet) {
 
 PlayerPingBlock.prototype.update = function () {
     this.boundingbox.update(this.x, this.y);
-    if (this.game.key) {
+    if (this.game.key && !this.game.keyup) {
         if (this.game.key === 38) {
            // console.log("up");
             if(this.y > 0) {

@@ -39,11 +39,23 @@ GameEngine.prototype.startInput = function() {
         that.click = getXandY(e);
         console.log("Left Click Event - X, Y " + e.clientX +"," + e.clientY);
     }, false);
+//press down, key code is 40 key up is false
+//press up, key code is 38, key up is still false
+//the problem is that it constantly alternates between the 2
 
     this.ctx.canvas.addEventListener("keydown", function (e) {
+        if (that.keyup) {
+            that.keyup = false;
+        }
         that.key = e.keyCode;
         //console.log("Key Down Event - Char " + e.code + " Code " + e.keyCode);
         }, false);
+
+    this.ctx.canvas.addEventListener("keyup", function (e) {
+        console.log(e);
+        that.keyup = true;
+        console.log("Key Up Event - Char " + e.code + " Code " + e.keyCode);
+    }, false);
 
 }
 
