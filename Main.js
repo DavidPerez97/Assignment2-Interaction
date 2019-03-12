@@ -22,21 +22,44 @@ AM.downloadAll(function () {
     gameEngine.addEntity(new Background(gameEngine, AM.getAsset("./img/PongBG.png")));
     var pingPongBall = new PingBall(gameEngine, AM.getAsset("./img/pingBallOnYourSide.png"),
                                                 AM.getAsset("./img/pingBallOnEnemySide.png"));
-    gameEngine.pongBall = pingPongBall;
+
+    var pingPongBall2 = new PingBall(gameEngine, AM.getAsset("./img/pingBallOnYourSide.png"),
+                                                AM.getAsset("./img/pingBallOnEnemySide.png"));
+    var pingPongBall3 = new PingBall(gameEngine, AM.getAsset("./img/pingBallOnYourSide.png"),
+                                                AM.getAsset("./img/pingBallOnEnemySide.png"));
+    var pingPongBall4 = new PingBall(gameEngine, AM.getAsset("./img/pingBallOnYourSide.png"),
+                                                AM.getAsset("./img/pingBallOnEnemySide.png"));
+    var pingPongBall5 = new PingBall(gameEngine, AM.getAsset("./img/pingBallOnYourSide.png"),
+                                                AM.getAsset("./img/pingBallOnEnemySide.png"));
     
-    var playerPongBoard = new PlayerPingBlock(gameEngine, AM.getAsset("./img/PlayerPing.png")); //agent stuffAutomata(gameEngine);
-    var playerPongBoard2 = new AgentPingBlock(gameEngine, AM.getAsset("./img/AgentPing.png")); //agent stuffAutomata(gameEngine);
+                                                gameEngine.pongBall = pingPongBall;
+    
+    
+    var playerPongBoard = new AgentPingBlock(gameEngine, AM.getAsset("./img/PlayerPing.png"), 'left'); //agent stuffAutomata(gameEngine);
+    playerPongBoard.x = 100;
+    playerPongBoard.y = 410;
+    var playerPongBoard2 = new AgentPingBlock(gameEngine, AM.getAsset("./img/AgentPing.png"), 'right'); //agent stuffAutomata(gameEngine);
     var pong_boxes = [];
     pong_boxes.push(playerPongBoard);
     pong_boxes.push(playerPongBoard2);
     gameEngine.pong_boxes = pong_boxes;
-    
-
+    var pong_balls = [];
+    pong_balls.push(pingPongBall);
+    pong_balls.push(pingPongBall2);
+    pong_balls.push(pingPongBall3);
+    pong_balls.push(pingPongBall4);
+    pong_balls.push(pingPongBall5);
+    gameEngine.pong_balls = pong_balls;
 
 
     gameEngine.addEntity(playerPongBoard);
     gameEngine.addEntity(playerPongBoard2);
     gameEngine.addEntity(pingPongBall);
+    gameEngine.addEntity(pingPongBall2);
+    gameEngine.addEntity(pingPongBall3);
+    gameEngine.addEntity(pingPongBall4);
+    gameEngine.addEntity(pingPongBall5);
+
 
 
     //var agentPongBoard = new;//

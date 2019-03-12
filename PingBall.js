@@ -19,12 +19,24 @@ function PingBall(game, spritesheet, spritesheet2) {
     this.leftSide = true;
     this.rightSide = false;
     this.MAXBOUNCEANGLE = 45;
-    this.BALLSPEED = 10;
-    this.incrementX = 10;
+    this.BALLSPEED = 5;
+    this.incrementX = 5;
     this.incrementY = 0;
     this.testValue = 0;
 }
-
+function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+}
+function getRandomNegPosInt(max) {
+    var flag = getRandomInt(2);
+    console.log(flag)
+    var num = getRandomInt(max);
+    if (flag === 0) {
+        return num;
+    } else if (flag === 1) {
+        return num * -1;
+    }
+}  
 
 PingBall.prototype.update = function () {
     this.boundingbox.update(this.x, this.y);
@@ -40,18 +52,19 @@ PingBall.prototype.update = function () {
     for (var i = 0; i < this.game.pong_boxes.length; i++) {
         if (this.boundingbox.collide(this.game.pong_boxes[i].boundingbox)) {
             var paddle = this.game.pong_boxes[i];
-            var relativeIntersectY = (paddle.y+(paddle.height/2)) - (this.y + this.height /2);
-            var normalizedRelativeIntersectionY = (relativeIntersectY/(paddle.height/2));
-            var bounceAngle = normalizedRelativeIntersectionY * this.MAXBOUNCEANGLE;
-            this.incrementX = this.BALLSPEED *Math.cos(bounceAngle);
-            this.incrementY = this.BALLSPEED*-Math.sin(bounceAngle);
-
+            //var relativeIntersectY = (paddle.y+(paddle.height/2)) - (this.y + this.height /2);
+            //var normalizedRelativeIntersectionY = (relativeIntersectY/(paddle.height/2));
+            //var bounceAngle = normalizedRelativeIntersectionY * this.MAXBOUNCEANGLE;
+            //this.incrementX = this.BALLSPEED *Math.cos(bounceAngle);
+            //this.incrementY = this.BALLSPEED*-Math.sin(bounceAngle) ;
+            this.incrementX = getRandomInt(5);
+            this.incrementY = getRandomNegPosInt(10);
             if(this.goingLeft && this.leftSide) {
-                this.goingRight = true;
                 this.goingLeft = false;
+                this.goingRight = true;
             } else if (this.goingRight && this.rightSide) {
-                this.goingRight = false;
                 this.goingLeft = true;
+                this.goingRight = false;
             }
             //this.goingLeft = false;
             //this.goingRight = true;
@@ -59,7 +72,7 @@ PingBall.prototype.update = function () {
     }
     if (this.goingLeft) {
         if (this.incrementX != this.testValue) {
-            console.log(this.incrementX)
+          //  console.log(this.incrementX)
             this.testValue = this.incrementX;
         }
 
@@ -70,7 +83,6 @@ PingBall.prototype.update = function () {
             if (this.x <= 0) {
                 this.x = (1000 / 2) -this.width / 2;
                 this.y = (720 / 2) - this.height / 2;
-                this.incrementX = 10;
                 this.incrementY = 0;
                 this.goingRight = false;
                 this.goingLeft = true;
@@ -78,7 +90,7 @@ PingBall.prototype.update = function () {
         } 
     } if (this.goingRight) {
         if (this.incrementX != this.testValue) {
-            console.log(this.incrementX)
+         //   console.log(this.incrementX)
             this.testValue = this.incrementX;
         }
         if (this.x < this.boardWidth) {
@@ -88,7 +100,6 @@ PingBall.prototype.update = function () {
             if (this.x >= this.boardWidth) {
                 this.x = (1000 / 2) -this.width / 2;
                 this.y = (720 / 2) - this.height / 2;
-                this.incrementX = 10;
                 this.incrementY = 0;
                 this.goingRight = true;
                 this.goingLeft = false;
@@ -97,7 +108,7 @@ PingBall.prototype.update = function () {
     }
     if (this.y > 720) {
         this.incrementY = -this.incrementY;
-    } if (this.y < 0) {
+    } if (this.y <= 10) {
         this.incrementY = -this.incrementY;
     }
 }
