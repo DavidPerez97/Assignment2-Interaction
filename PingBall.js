@@ -29,7 +29,6 @@ function getRandomInt(max) {
 }
 function getRandomNegPosInt(max) {
     var flag = getRandomInt(2);
-    console.log(flag)
     var num = getRandomInt(max);
     if (flag === 0) {
         return num;
@@ -72,7 +71,6 @@ PingBall.prototype.update = function () {
     }
     if (this.goingLeft) {
         if (this.incrementX != this.testValue) {
-          //  console.log(this.incrementX)
             this.testValue = this.incrementX;
         }
 
@@ -90,7 +88,6 @@ PingBall.prototype.update = function () {
         } 
     } if (this.goingRight) {
         if (this.incrementX != this.testValue) {
-         //   console.log(this.incrementX)
             this.testValue = this.incrementX;
         }
         if (this.x < this.boardWidth) {

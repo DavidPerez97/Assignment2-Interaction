@@ -11,7 +11,17 @@ AM.queueDownload("./img/pingBallOnEnemySide.png");
 
 
 
+
+window.onload = function () {
+    var socket = io.connect("http://localhost:8888");  
+    socket.on("load", function (data) {
+        console.log(data);
+    });
+}
+
+    
 AM.downloadAll(function () {
+
     var canvas = document.getElementById("gameWorld");
     var ctx = canvas.getContext("2d");
 
