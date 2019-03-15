@@ -40,3 +40,5 @@ PlayerPingBlock.prototype.draw = function () {
         this.x, this.y);
 }
 
+
+

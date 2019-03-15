@@ -108,6 +108,7 @@ PingBall.prototype.update = function () {
     } if (this.y <= 10) {
         this.incrementY = -this.incrementY;
     }
+
 }
 
 PingBall.prototype.draw = function () {
@@ -121,3 +122,30 @@ PingBall.prototype.draw = function () {
     
 }
 
+PingBall.prototype.get_ball_stats = function () {
+    list = [this.x, this.y, this.speed, this.incrementX, this.incrementY, this.goingLeft, this.goingRight,this.testValue]
+    return list
+}
+
+PingBall.prototype.set_ball_stats = function (list) {
+    x = list[0];
+    y = list[1];
+    speed = list[2];
+    incX = list[3]
+    incY = list[4]
+    going_left = list[5]
+    going_right = list[6]
+    testval = list[7];
+    this.x = x;
+    this.y = y;
+    this.speed = speed;
+    this.incrementX = incX
+    this.incrementY = incY
+    this.goingLeft = going_left
+    this.goingRight = going_right
+    this.testValue = testval
+}
+
+function getPingBallXandY() {
+    return this.x;
+}

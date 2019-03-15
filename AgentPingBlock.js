@@ -29,8 +29,8 @@ AgentPingBlock.prototype.update = function () {
     //case where pingball is above
     
     //var miny = this.game.pong_balls[0].y;
-    var minx = 1000;
-    var maxx = 0;
+    this.minx = 1000;
+    this.maxx = 0;
     for (let i = 0; i < this.game.pong_balls.length; i++) {
         
         currentPongBall = this.game.pong_balls[i];
@@ -38,16 +38,16 @@ AgentPingBlock.prototype.update = function () {
 
             if (currentPongBall.goingLeft === true) {
 
-                if (minx > currentPongBall.x && minx > 120) {
-                    minx = currentPongBall.x
+                if (this.minx > currentPongBall.x && this.minx > 120) {
+                    this.minx = currentPongBall.x
                     this.pongBall = currentPongBall;
                 }
             }
         } else if (this.position === 'right') {
             if (currentPongBall.goingRight === true) {
 
-                if (maxx < currentPongBall.x && maxx < 880) {
-                    maxx = currentPongBall.x
+                if (this.maxx < currentPongBall.x && this.maxx < 880) {
+                    this.maxx = currentPongBall.x
                     this.pongBall = currentPongBall;
                 }
             }
@@ -75,6 +75,18 @@ AgentPingBlock.prototype.update = function () {
         }
     }
 
+
+
+    if (this.game.key && !this.game.keyup) {
+        if (this.game.key === 38) {
+            console.log(this.get_all_pong_stats());
+            this.game.key = false;
+           // if(this.y > 0) {
+             //   this.y -= this.increment;
+            //}
+        } 
+    }
+
 }
 
 AgentPingBlock.prototype.draw = function () {
@@ -82,3 +94,23 @@ AgentPingBlock.prototype.draw = function () {
         this.x, this.y);
 }
 
+AgentPingBlock.prototype.get_all_pong_stats = function() {
+    list = [this.x, this.y, this.position, this.increment, this.boundingbox]//, this.pongBall]
+    return list;
+}
+
+AgentPingBlock.prototype.set_all_pong_stats = function(list) {
+    var x = list[0]
+    var y = list[1]
+    var position = list[2]
+    var increment = list[3]
+    //var bounding_box = list[4]
+    var pongball = list[4]
+    this.x = x;
+    this.y = y;
+    this.position = position;
+    this.increment = increment;
+    //this.boundingbox = bounding_box;
+    this.pongBall = pongball;
+
+}
